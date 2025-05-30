@@ -1,0 +1,15 @@
+{
+    "name": "edgaras/what-to-do",
+    "autoload": {
+        "psr-4": {
+            "Edgaras\\WhatToDo\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "edgaras",
+            "email": "edgaras.malukas@gmail.com"
+        }
+    ],
+    "require": {}
+}
