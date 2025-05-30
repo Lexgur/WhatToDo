@@ -12,6 +12,9 @@
         }
     ],
     "require-dev": {
-        "phpmd/phpmd": "^2.15"
+        "phpmd/phpmd": "^2.15",
+        "phpunit/phpunit": "^12.1",
+        "phpstan/phpstan": "^2.1",
+        "friendsofphp/php-cs-fixer": "^3.75"
     }
 }
