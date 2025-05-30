@@ -31,5 +31,8 @@
             "php-cs-fixer"
         ],
         "phpunit": "vendor/bin/phpunit --coverage-html coverage-report"
+    },
+    "require": {
+        "twig/twig": "^3.21"
     }
 }
