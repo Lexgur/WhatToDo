@@ -5,30 +5,24 @@ declare(strict_types=1);
 namespace Edgaras\WhatToDo\Controller;
 
 use Edgaras\WhatToDo\Attribute\Path;
-use Edgaras\WhatToDo\TemplateProvider;
 
-#[Path('/abstract-controller')]
+#[Path('/abstract')]
 abstract class AbstractController
 {
-    private TemplateProvider $templateProvider;
-
-    public function __construct(TemplateProvider $templateProvider)
-    {
-        $this->templateProvider = $templateProvider;
-    }
-
     protected function isPostRequest(): bool
     {
         return $_SERVER['REQUEST_METHOD'] === 'POST';
     }
 
-    /** @param array<string, mixed> $params */
-    protected function render(string $template, array $params = [], int $statusCode = 200): string
+    /**
+     * Returns a JSON response with proper headers and status code.
+     * @param array<string, mixed> $data
+     */
+    protected function json(array $data, int $statusCode = 200): string
     {
         http_response_code($statusCode);
-        header('Content-Type: text/html; charset=UTF-8');
-
-        return $this->templateProvider->get()->render($template, $params);
+        header('Content-Type: application/json; charset=UTF-8');
+        return json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
 
     public function redirect(string $path): string

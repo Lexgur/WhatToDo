@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Edgaras\WhatToDo\Tests;
 
-use Edgaras\WhatToDo\Controller\SportController;
+use Edgaras\WhatToDo\Tests\ApplicationTest\SportController;
 use Edgaras\WhatToDo\Exception\FilePathReadException;
 use Edgaras\WhatToDo\Exception\NotFoundException;
 use Edgaras\WhatToDo\Exception\RegisterControllerException;

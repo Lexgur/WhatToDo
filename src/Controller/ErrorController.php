@@ -9,39 +9,45 @@ use Edgaras\WhatToDo\Exception\BadRequestException;
 use Edgaras\WhatToDo\Exception\ForbiddenException;
 use Edgaras\WhatToDo\Exception\NotFoundException;
 use Edgaras\WhatToDo\Exception\UnauthorizedException;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
-#[Path('/error')]
+#[Path('/api/error')]
 class ErrorController extends AbstractController
 {
-    public function __invoke(\Throwable $error): string
+    public function __invoke(\Throwable $error): JsonResponse
     {
-        $params = match (true) {
+        error_log('ErrorController invoked: ' . get_class($error));
+        error_log('Error message: ' . $error->getMessage());
+        error_log('Error file: ' . $error->getFile() . ':' . $error->getLine());
+
+        $errorData = match (true) {
             $error instanceof BadRequestException => [
-                'code' => 400,
-                'title' => 'Oops! Something went wrong',
+                'status' => 400,
+                'error' => 'Bad Request',
                 'message' => 'Please check your information and try again.',
             ],
             $error instanceof UnauthorizedException => [
-                'code' => 401,
-                'title' => 'Please sign in',
-                'message' => 'You need to sign in to access this page.',
+                'status' => 401,
+                'error' => 'Unauthorized',
+                'message' => 'Authentication required to access this resource.',
             ],
             $error instanceof ForbiddenException => [
-                'code' => 403,
-                'title' => 'Access restricted',
-                'message' => 'You don\'t have permission to view this content.',
+                'status' => 403,
+                'error' => 'Forbidden',
+                'message' => 'You do not have permission to access this resource.',
             ],
             $error instanceof NotFoundException => [
-                'code' => 404,
-                'title' => 'Page not found',
-                'message' => 'We couldn\'t find what you\'re looking for.',
+                'status' => 404,
+                'error' => 'Not Found',
+                'message' => 'The requested resource could not be found.',
             ],
             default => [
-                'code' => 500,
-                'title' => 'We\'re having some trouble',
-                'message' => 'Our team has been notified. Please try again later.',
+                'status' => 500,
+                'error' => 'Internal Server Error',
+                'message' => 'An unexpected error occurred. Please try again later.',
             ],
         };
-        return $this->render('error.html.twig', $params, $params['code']);
+
+        return new JsonResponse($errorData, $errorData['status']);
     }
 }

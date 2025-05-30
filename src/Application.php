@@ -6,6 +6,7 @@ namespace Edgaras\WhatToDo;
 
 use Edgaras\WhatToDo\Controller\ErrorController;
 use Edgaras\WhatToDo\Controller\SportController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class Application
 {
@@ -31,18 +32,29 @@ class Application
 
             if (empty($routePath) || $routePath === '/') {
                 $controller = $this->container->get(SportController::class);
-                $params = [];
             } else {
                 $controllerClass = $this->router->getController($routePath);
-                $params = $this->router->getParameters($routePath);
                 $controller = $this->container->get($controllerClass);
             }
+
+            $response = $controller();
+
+            if ($response instanceof JsonResponse) {
+                $response->send();
+                return;
+            }
+
             http_response_code(200);
-            print call_user_func_array($controller, $params);
+            header('Content-Type: text/plain');
+            echo $response;
 
         } catch (\Throwable $error) {
             $errorController = $this->container->get(ErrorController::class);
-            print $errorController($error);
+            $response = $errorController($error);
+
+            if ($response instanceof JsonResponse) {
+                $response->send();
+            }
         }
     }
 }

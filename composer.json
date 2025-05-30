@@ -30,9 +30,11 @@
             "@phpstan",
             "php-cs-fixer"
         ],
-        "phpunit": "vendor/bin/phpunit --coverage-html coverage-report"
+        "phpunit": "vendor/bin/phpunit --coverage-html coverage-report",
+        "debug": "php -dxdebug.mode=debug,coverage -dxdebug.start_with_request=yes vendor/bin/phpunit\n"
     },
     "require": {
-        "twig/twig": "^3.21"
+        "twig/twig": "^3.21",
+        "symfony/http-foundation": "^7.3"
     }
 }
