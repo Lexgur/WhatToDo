@@ -64,7 +64,9 @@ class Container implements ContainerInterface
     }
 
     /**
-     * @throws CircularDependencyException|ServiceInstantiationException
+     * @param string $serviceClass
+     * @return object
+     * @throws CircularDependencyException
      */
     public function get(string $serviceClass): object
     {
