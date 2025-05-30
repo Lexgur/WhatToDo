@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Edgaras\WhatToDo\Tests;
 
+use Edgaras\WhatToDo\Container;
 use Edgaras\WhatToDo\Exception\MissingDependencyParameterException;
 use Edgaras\WhatToDo\Exception\ServiceInstantiationException;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -78,6 +79,13 @@ class ContainerTest extends TestCase
         ]);
 
         $this->assertSame('secret-key', $container->getParameter('apiKey'));
+    }
+
+    public function testContainerReturnsItself(): void
+    {
+        $container = new Container();
+
+        $this->assertSame($container, $container->get(Container::class));
     }
 
     public function testGetParameterThrowsMissingDependencyParameterExceptionWhenMissing(): void
