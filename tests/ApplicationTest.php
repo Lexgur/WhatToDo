@@ -46,6 +46,16 @@ class ApplicationTest extends WebTestCase
         $this->assertEquals('The requested resource could not be found.', $json['message']);
     }
 
+    public function testGenericExceptionReturns500(): void
+    {
+        [$output, $statusCode] = $this->request('GET', '/test/generic-error');
+        $json = json_decode($output, true);
+
+        $this->assertEquals(500, $statusCode);
+        $this->assertEquals('Internal Server Error', $json['error']);
+        $this->assertEquals('An unexpected error occurred. Please try again later.', $json['message']);
+    }
+
     public function testEmptyPathReturnsSportController(): void
     {
         [$output, $statusCode] = $this->request('GET', '');

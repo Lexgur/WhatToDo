@@ -16,10 +16,6 @@ class ErrorController extends AbstractController
 {
     public function __invoke(\Throwable $error): JsonResponse
     {
-        error_log('ErrorController invoked: ' . get_class($error));
-        error_log('Error message: ' . $error->getMessage());
-        error_log('Error file: ' . $error->getFile() . ':' . $error->getLine());
-
         $errorData = match (true) {
             $error instanceof BadRequestException => [
                 'status' => 400,
