@@ -4,6 +4,7 @@ Thumbs.db
 
 tmp
 vendor
+coverage-report
 
 .idea
 .vscode

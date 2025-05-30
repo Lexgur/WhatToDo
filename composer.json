@@ -16,5 +16,19 @@
         "phpunit/phpunit": "^12.1",
         "phpstan/phpstan": "^2.1",
         "friendsofphp/php-cs-fixer": "^3.75"
+    },
+    "scripts": {
+        "phpmd": [
+            "phpmd src/ text ruleset.xml",
+            "phpmd tests/ text ruleset.xml"
+        ],
+        "phpstan": "vendor/bin/phpstan",
+        "php-cs-fixer": "PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer lint src/ tests/ --allow-risky=yes --diff",
+        "code-style": [
+            "@phpmd",
+            "@phpstan",
+            "php-cs-fixer"
+        ],
+        "phpunit": "vendor/bin/phpunit --coverage-html coverage-report"
     }
 }
