@@ -1,0 +1,15 @@
+[Dd]ekstop.ini
+.DS_Store
+Thumbs.db
+
+tmp
+vendor
+
+.idea
+.vscode
+
+*.config.php
+
+*.sqlite
+*.sql
+*.cache
