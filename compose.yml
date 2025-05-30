@@ -44,8 +44,6 @@ services:
       NGINX_SERVER_ROOT: /var/www/html/public
     volumes:
     - ./:/var/www/html:cached
-## Alternative for macOS users: Mutagen https://wodby.com/docs/stacks/php/local#docker-for-mac
-#    - backend:/var/www/html
     labels:
     - "traefik.http.routers.${PROJECT_NAME}_nginx.rule=Host(`${PROJECT_BASE_URL}`)"
 
