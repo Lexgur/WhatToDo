@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Edgaras\WhatToDo\Tests;
 
-use Edgaras\WhatToDo\Exception\ServiceIns;
+use Edgaras\WhatToDo\Exception\MissingDependencyParameterException;
+use Edgaras\WhatToDo\Exception\ServiceInstantiationException;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
