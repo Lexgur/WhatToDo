@@ -110,48 +110,60 @@ class SportControllerWebTest extends WebTestCase
             ],
         ];
 
-        $filterSports = function(array $filters) use ($allSports) {
-            return array_values(array_filter($allSports, function($sport) use ($filters) {
-                if (isset($filters['city']) && $sport['address']['city'] !== $filters['city']) {
-                    return false;
-                }
-                if (isset($filters['type']) && $sport['type'] !== $filters['type']) {
-                    return false;
-                }
-                if (isset($filters['kind']) && $sport['kind'] !== $filters['kind']) {
-                    return false;
-                }
-                if (isset($filters['date']) && $sport['date'] !== $filters['date']) {
-                    return false;
-                }
-                return true;
-            }));
-        };
-
         return [
             ['/sportas', $allSports],
 
             [
                 '/sportas?city=Vilnius&type=private&kind=not+really&date=2025-05-31',
-                $filterSports([
-                    'city' => 'Vilnius',
-                    'type' => 'private',
-                    'kind' => 'not really',
-                    'date' => '2025-05-31',
-                ]),
+                [
+                    [
+                        'name' => 'Name 2',
+                        'type' => 'private',
+                        'kind' => 'not really',
+                        'price' => 100.01,
+                        'rating' => 0,
+                        'address' => [
+                            'street' => 'Not gonna tell ya st. 10 - 200',
+                            'postal_code' => '12346',
+                            'city' => 'Vilnius',
+                            'country' => 'Lithuania'
+                        ],
+                        'location' => [
+                            'lat' => 54.687157,
+                            'long' => 25.279652
+                        ],
+                        'date' => '2025-05-31'
+                    ],
+                ],
             ],
 
             [
                 '/sportas?city=Kaunas&date=2025-05-31',
-                $filterSports([
-                    'city' => 'Kaunas',
-                    'date' => '2025-05-31',
-                ]),
+                [
+                    [
+                        'name' => 'Name 3',
+                        'type' => 'private',
+                        'kind' => 'not really',
+                        'price' => 100.01,
+                        'rating' => 0,
+                        'address' => [
+                            'street' => 'Not gonna tell ya st. 15 - 300',
+                            'postal_code' => '12347',
+                            'city' => 'Kaunas',
+                            'country' => 'Lithuania'
+                        ],
+                        'location' => [
+                            'lat' => 54.898521,
+                            'long' => 23.903597
+                        ],
+                        'date' => '2025-05-31'
+                    ],
+                ],
             ],
 
             [
                 '/sportas?type=private',
-                $filterSports(['type' => 'private']),
+                $allSports,
             ],
         ];
     }
