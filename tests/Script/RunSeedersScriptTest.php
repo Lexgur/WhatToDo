@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Edgaras\WhatToDo\Tests\Script;
 
-use Edgaras\WhatToDoContainer;
+use Edgaras\WhatToDo\Container;
 use Edgaras\WhatToDo\Script\RunSeedersScript;
 use Edgaras\WhatToDo\Tests\Script\RunSeedersScriptTest\RunOrder\FirstSeeder;
 use Edgaras\WhatToDo\Tests\Script\RunSeedersScriptTest\RunOrder\LastSeeder;
