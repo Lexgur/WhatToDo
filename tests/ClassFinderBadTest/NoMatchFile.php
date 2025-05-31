@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Lexgur\GondorGains\Tests\ClassFinderBadTest;
+namespace Edgaras\WhatToDo\Tests\ClassFinderBadTest;
 
 function helper(): true
 {

@@ -16,7 +16,10 @@ abstract class WebTestCase extends TestCase
         $this->app = new Application();
     }
 
-    /** @param array<string, mixed> $data */
+    /**
+     * @param array<string, mixed> $data
+     * @return array{0: string, 1: int}
+     */
     public function request(string $method, string $url, array $data = []): array
     {
         $_SERVER['REQUEST_METHOD'] = strtoupper($method);
@@ -32,8 +35,7 @@ abstract class WebTestCase extends TestCase
         $this->app->run();
         $output = ob_get_clean();
 
-        // Try to decode JSON response and get status from headers if needed
-        $statusCode = http_response_code(); // works if send() used correctly
+        $statusCode = http_response_code();
 
         return [$output, $statusCode];
     }
