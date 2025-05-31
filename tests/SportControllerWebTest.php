@@ -35,83 +35,81 @@ class SportControllerWebTest extends WebTestCase
 
     public static function provideTestControllerReturnsCorrectDataData(): array
     {
-        $allSports = [
-            [
-                'name' => 'Name',
-                'type' => 'private',
-                'kind' => 'not really',
-                'price' => 100.01,
-                'rating' => 0,
-                'address' => [
-                    'street' => 'Not gonna tell ya st. 5 - 100',
-                    'postal_code' => '12345',
-                    'city' => 'Panevezis',
-                    'country' => 'Lithuania'
-                ],
-                'location' => [
-                    'lat' => 56.123456789,
-                    'long' => 56.123456789
-                ],
-                'date' => '2025-05-31'
-            ],
-            [
-                'name' => 'Name 2',
-                'type' => 'private',
-                'kind' => 'not really',
-                'price' => 100.01,
-                'rating' => 0,
-                'address' => [
-                    'street' => 'Not gonna tell ya st. 10 - 200',
-                    'postal_code' => '12346',
-                    'city' => 'Vilnius',
-                    'country' => 'Lithuania'
-                ],
-                'location' => [
-                    'lat' => 54.687157,
-                    'long' => 25.279652
-                ],
-                'date' => '2025-05-31'
-            ],
-            [
-                'name' => 'Name 3',
-                'type' => 'private',
-                'kind' => 'not really',
-                'price' => 100.01,
-                'rating' => 0,
-                'address' => [
-                    'street' => 'Not gonna tell ya st. 15 - 300',
-                    'postal_code' => '12347',
-                    'city' => 'Kaunas',
-                    'country' => 'Lithuania'
-                ],
-                'location' => [
-                    'lat' => 54.898521,
-                    'long' => 23.903597
-                ],
-                'date' => '2025-05-31'
-            ],
-            [
-                'name' => 'Name 4',
-                'type' => 'private',
-                'kind' => 'not really',
-                'price' => 100.01,
-                'rating' => 0,
-                'address' => [
-                    'street' => 'Not gonna tell ya st. 20 - 400',
-                    'postal_code' => '12348',
-                    'city' => 'Šiauliai',
-                    'country' => 'Lithuania'
-                ],
-                'location' => [
-                    'lat' => 55.933333,
-                    'long' => 23.316667
-                ],
-                'date' => '2025-05-31'
-            ],
-        ];
-
         return [
-            ['/sportas', $allSports],
+            ['/sportas', [
+                [
+                    'name' => 'Name',
+                    'type' => 'private',
+                    'kind' => 'not really',
+                    'price' => 100.01,
+                    'rating' => 0,
+                    'address' => [
+                        'street' => 'Not gonna tell ya st. 5 - 100',
+                        'postal_code' => '12345',
+                        'city' => 'Panevezis',
+                        'country' => 'Lithuania'
+                    ],
+                    'location' => [
+                        'lat' => 56.123456789,
+                        'long' => 56.123456789
+                    ],
+                    'date' => '2025-05-31'
+                ],
+                [
+                    'name' => 'Name 2',
+                    'type' => 'private',
+                    'kind' => 'not really',
+                    'price' => 100.01,
+                    'rating' => 0,
+                    'address' => [
+                        'street' => 'Not gonna tell ya st. 10 - 200',
+                        'postal_code' => '12346',
+                        'city' => 'Vilnius',
+                        'country' => 'Lithuania'
+                    ],
+                    'location' => [
+                        'lat' => 54.687157,
+                        'long' => 25.279652
+                    ],
+                    'date' => '2025-05-31'
+                ],
+                [
+                    'name' => 'Name 3',
+                    'type' => 'private',
+                    'kind' => 'not really',
+                    'price' => 100.01,
+                    'rating' => 0,
+                    'address' => [
+                        'street' => 'Not gonna tell ya st. 15 - 300',
+                        'postal_code' => '12347',
+                        'city' => 'Kaunas',
+                        'country' => 'Lithuania'
+                    ],
+                    'location' => [
+                        'lat' => 54.898521,
+                        'long' => 23.903597
+                    ],
+                    'date' => '2025-05-31'
+                ],
+                [
+                    'name' => 'Name 4',
+                    'type' => 'private',
+                    'kind' => 'not really',
+                    'price' => 100.01,
+                    'rating' => 0,
+                    'address' => [
+                        'street' => 'Not gonna tell ya st. 20 - 400',
+                        'postal_code' => '12348',
+                        'city' => 'Šiauliai',
+                        'country' => 'Lithuania'
+                    ],
+                    'location' => [
+                        'lat' => 55.933333,
+                        'long' => 23.316667
+                    ],
+                    'date' => '2025-05-31'
+                ],
+            ]],
 
             [
                 '/sportas?city=Vilnius&type=private&kind=not+really&date=2025-05-31',
@@ -163,7 +161,80 @@ class SportControllerWebTest extends WebTestCase
 
             [
                 '/sportas?type=private',
-                $allSports,
+                [
+                    [
+                        'name' => 'Name',
+                        'type' => 'private',
+                        'kind' => 'not really',
+                        'price' => 100.01,
+                        'rating' => 0,
+                        'address' => [
+                            'street' => 'Not gonna tell ya st. 5 - 100',
+                            'postal_code' => '12345',
+                            'city' => 'Panevezis',
+                            'country' => 'Lithuania'
+                        ],
+                        'location' => [
+                            'lat' => 56.123456789,
+                            'long' => 56.123456789
+                        ],
+                        'date' => '2025-05-31'
+                    ],
+                    [
+                        'name' => 'Name 2',
+                        'type' => 'private',
+                        'kind' => 'not really',
+                        'price' => 100.01,
+                        'rating' => 0,
+                        'address' => [
+                            'street' => 'Not gonna tell ya st. 10 - 200',
+                            'postal_code' => '12346',
+                            'city' => 'Vilnius',
+                            'country' => 'Lithuania'
+                        ],
+                        'location' => [
+                            'lat' => 54.687157,
+                            'long' => 25.279652
+                        ],
+                        'date' => '2025-05-31'
+                    ],
+                    [
+                        'name' => 'Name 3',
+                        'type' => 'private',
+                        'kind' => 'not really',
+                        'price' => 100.01,
+                        'rating' => 0,
+                        'address' => [
+                            'street' => 'Not gonna tell ya st. 15 - 300',
+                            'postal_code' => '12347',
+                            'city' => 'Kaunas',
+                            'country' => 'Lithuania'
+                        ],
+                        'location' => [
+                            'lat' => 54.898521,
+                            'long' => 23.903597
+                        ],
+                        'date' => '2025-05-31'
+                    ],
+                    [
+                        'name' => 'Name 4',
+                        'type' => 'private',
+                        'kind' => 'not really',
+                        'price' => 100.01,
+                        'rating' => 0,
+                        'address' => [
+                            'street' => 'Not gonna tell ya st. 20 - 400',
+                            'postal_code' => '12348',
+                            'city' => 'Šiauliai',
+                            'country' => 'Lithuania'
+                        ],
+                        'location' => [
+                            'lat' => 55.933333,
+                            'long' => 23.316667
+                        ],
+                        'date' => '2025-05-31'
+                    ],
+                ],
             ],
         ];
     }
