@@ -5,14 +5,15 @@ declare(strict_types=1);
 namespace Edgaras\WhatToDo\Controller;
 
 use Edgaras\WhatToDo\Attribute\Path;
+use Edgaras\WhatToDo\Repository\SportModelRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 #[Path('/sportas')]
 class SportController extends AbstractController
 {
-    private SportRepository $repository;
+    private SportModelRepository $repository;
 
-    public function __construct(SportRepository $repository)
+    public function __construct(SportModelRepository $repository)
     {
         $this->repository = $repository;
     }
