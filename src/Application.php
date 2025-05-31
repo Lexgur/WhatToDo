@@ -28,16 +28,25 @@ class Application
     {
         try {
             $this->router->registerControllers();
-            $routePath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+
+            $fullUri = $_SERVER['REQUEST_URI'];
+            $routePath = parse_url($fullUri, PHP_URL_PATH);
 
             if (empty($routePath) || $routePath === '/') {
                 $controller = $this->container->get(SportController::class);
+                $queryParams = [];
             } else {
                 $controllerClass = $this->router->getController($routePath);
                 $controller = $this->container->get($controllerClass);
+
+                $queryString = parse_url($fullUri, PHP_URL_QUERY);
+                $queryParams = [];
+                if ($queryString !== null) {
+                    parse_str($queryString, $queryParams);
+                }
             }
 
-            $response = $controller();
+            $response = call_user_func($controller, $queryParams);
 
             if ($response instanceof JsonResponse) {
                 $response->send();
@@ -54,7 +63,12 @@ class Application
 
             if ($response instanceof JsonResponse) {
                 $response->send();
+                return;
             }
+
+            http_response_code(500);
+            header('Content-Type: text/plain');
+            echo $response;
         }
     }
 }

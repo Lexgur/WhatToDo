@@ -128,7 +128,25 @@ class RouterTest extends TestCase
         $router->registerControllers();
     }
 
-    /** @return array<int, array<int,string>> */
+    #[DataProvider('provideTestGetQueryParametersData')]
+    public function testGetQueryParameters(string $inputRoute, array $expectedParams): void
+    {
+        $params = $this->router->getQueryParameters($inputRoute);
+        $this->assertSame($expectedParams, $params);
+    }
+
+    public static function provideTestGetQueryParametersData(): array
+    {
+        return [
+            ['/sportas?city=Vilnius&type=private', ['city' => 'Vilnius', 'type' => 'private']],
+            ['/sportas', []],
+            ['/sportas?', []],
+            ['/sportas?flag', ['flag' => '']],
+            ['/sportas?foo=bar&baz=', ['foo' => 'bar', 'baz' => '']],
+        ];
+    }
+
+/** @return array<int, array<int,string>> */
     public static function provideTestGetControllerData(): array
     {
         return [

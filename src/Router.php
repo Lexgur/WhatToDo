@@ -92,6 +92,26 @@ class Router
     }
 
     /**
+     * Extract query parameters from a URL path string.
+     *
+     * @param string $routePath Full route string, e.g. '/sportas?city=Vilnius&type=private'
+     * @return array<string, string> Associative array of query params
+     */
+    public function getQueryParameters(string $routePath): array
+    {
+        $queryParams = [];
+
+        $parts = parse_url($routePath);
+
+        if (isset($parts['query'])) {
+            parse_str($parts['query'], $queryParams);
+        }
+
+        return $queryParams;
+    }
+
+
+    /**
      * @return string[]
      */
     public function getRoutes(): array
