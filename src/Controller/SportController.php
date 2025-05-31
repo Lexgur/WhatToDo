@@ -20,6 +20,9 @@ class SportController extends AbstractController
         $this->repository = $repository;
     }
 
+    /**
+     * @param array<string, mixed> $filters
+     */
     public function __invoke(array $filters): JsonResponse
     {
         $sports = $this->repository->getSports($filters);

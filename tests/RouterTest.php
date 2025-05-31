@@ -128,6 +128,9 @@ class RouterTest extends TestCase
         $router->registerControllers();
     }
 
+    /**
+     * @param array<string, string> $expectedParams
+     */
     #[DataProvider('provideTestGetQueryParametersData')]
     public function testGetQueryParameters(string $inputRoute, array $expectedParams): void
     {
@@ -135,6 +138,9 @@ class RouterTest extends TestCase
         $this->assertSame($expectedParams, $params);
     }
 
+    /**
+     * @return array<int, array{string, array<string, string>}>
+     */
     public static function provideTestGetQueryParametersData(): array
     {
         return [

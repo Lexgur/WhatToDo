@@ -10,6 +10,9 @@ use TypeError;
 
 class SportTest extends TestCase
 {
+    /**
+     * @var array<string, mixed>
+     */
     private array $initialData;
 
     protected function setUp(): void
@@ -161,7 +164,7 @@ class SportTest extends TestCase
     {
         $this->expectException(TypeError::class);
 
-        // Passing int instead of array for address (invalid)
+        /** @phpstan-ignore-next-line argument.type */
         new Sport(1, 'Name', 'type', 'kind', 20.5, 5, 'not an array', [], '2025-01-01');
     }
 }

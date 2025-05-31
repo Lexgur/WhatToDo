@@ -122,6 +122,9 @@ class SportModelRepository extends BaseRepository
         return $this->createSportFromRow($row);
     }
 
+    /**
+     * @param array<string, mixed> $row
+     */
     private function createSportFromRow(array $row): Sport
     {
         return new Sport(

@@ -9,7 +9,8 @@ use PHPUnit\Framework\TestCase;
 
 class AbstractControllerTest extends TestCase
 {
-    private AbstractController $controller;
+    /** @var object */
+    private object $controller;
 
     protected function setUp(): void
     {
@@ -19,6 +20,9 @@ class AbstractControllerTest extends TestCase
                 return $this->isPostRequest();
             }
 
+            /**
+             * @param array<string, mixed> $data
+             */
             public function callJson(array $data, int $statusCode = 200): string
             {
                 return $this->json($data, $statusCode);

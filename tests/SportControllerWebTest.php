@@ -43,7 +43,9 @@ class SportControllerWebTest extends WebTestCase
         parent::setUp();
     }
 
-
+    /**
+     * @param array<int, array<string, mixed>> $content
+     */
     #[DataProvider('provideTestControllerReturnsCorrectDataData')]
     public function testControllerReturnsCorrectData(string $url, array $content): void
     {
@@ -54,6 +56,9 @@ class SportControllerWebTest extends WebTestCase
         $this->assertEquals($content, json_decode($output, true));
     }
 
+    /**
+     * @return list<array{0: string, 1: list<array<string, mixed>>}>
+     */
     public static function provideTestControllerReturnsCorrectDataData(): array
     {
         return [

@@ -8,16 +8,48 @@ use JsonSerializable;
 
 class Sport implements JsonSerializable
 {
+    /** @var int|null */
     private ?int $id;
+
+    /** @var string */
     private string $name;
+
+    /** @var string */
     private string $type;
+
+    /** @var string */
     private string $kind;
+
+    /** @var float */
     private float $price;
+
+    /** @var int */
     private int $rating;
+
+    /**
+     * @var array<string, string>
+     */
     private array $address;
+
+    /**
+     * @var array<string, float|int>
+     */
     private array $location;
+
+    /** @var string */
     private string $date;
 
+    /**
+     * @param int|null $id
+     * @param string $name
+     * @param string $type
+     * @param string $kind
+     * @param float $price
+     * @param int $rating
+     * @param array<string, string> $address
+     * @param array<string, float|int> $location
+     * @param string $date
+     */
     public function __construct(
         ?int $id,
         string $name,
@@ -70,6 +102,9 @@ class Sport implements JsonSerializable
         return $this->rating;
     }
 
+    /**
+     * @return array<string, string>
+     */
     public function getAddress(): array
     {
         return $this->address;
@@ -95,6 +130,9 @@ class Sport implements JsonSerializable
         return $this->address['country'] ?? '';
     }
 
+    /**
+     * @return array<string, float|int>
+     */
     public function getLocation(): array
     {
         return $this->location;
@@ -140,6 +178,9 @@ class Sport implements JsonSerializable
         $this->rating = $rating;
     }
 
+    /**
+     * @param array<string, string> $address
+     */
     public function setAddress(array $address): void
     {
         $this->address = $address;
@@ -165,6 +206,9 @@ class Sport implements JsonSerializable
         $this->address['country'] = $country;
     }
 
+    /**
+     * @param array<string, float|int> $location
+     */
     public function setLocation(array $location): void
     {
         $this->location = $location;
@@ -185,6 +229,9 @@ class Sport implements JsonSerializable
         $this->date = $date;
     }
 
+    /**
+     * @param array<string, mixed> $data
+     */
     public static function create(array $data): self
     {
         return new self(
@@ -201,7 +248,7 @@ class Sport implements JsonSerializable
     }
 
     /**
-     * @return mixed
+     * @return array<string, mixed>
      */
     public function jsonSerialize(): array
     {
@@ -224,5 +271,4 @@ class Sport implements JsonSerializable
             'date' => $this->date,
         ];
     }
-
 }
