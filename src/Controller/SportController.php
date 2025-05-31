@@ -7,6 +7,8 @@ namespace Edgaras\WhatToDo\Controller;
 use Edgaras\WhatToDo\Attribute\Path;
 use Edgaras\WhatToDo\Repository\SportModelRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+
 
 #[Path('/sportas')]
 class SportController extends AbstractController
@@ -18,10 +20,10 @@ class SportController extends AbstractController
         $this->repository = $repository;
     }
 
-    public function __invoke(): JsonResponse
+    public function __invoke(array $filters): JsonResponse
     {
-        $data = $this->repository->getSportData();
+        $sports = $this->repository->getSports($filters);
 
-        return new JsonResponse($data);
+        return new JsonResponse($sports);
     }
 }
