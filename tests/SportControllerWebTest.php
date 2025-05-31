@@ -6,7 +6,6 @@ namespace Edgaras\WhatToDo\Tests;
 
 use Edgaras\WhatToDo\Container;
 use PHPUnit\Framework\Attributes\DataProvider;
-use function PHPUnit\Framework\assertEquals;
 
 class SportControllerWebTest extends WebTestCase
 {
@@ -36,34 +35,16 @@ class SportControllerWebTest extends WebTestCase
     public static function provideTestControllerReturnsCorrectDataData(): array
     {
         return [
-            ['/sportas', [
+            ['/sports', [
                 [
-                    'name' => 'Name',
-                    'type' => 'private',
-                    'kind' => 'not really',
-                    'price' => 100.01,
-                    'rating' => 0,
+                    'name' => 'Basketball Court',
+                    'type' => 'public',
+                    'kind' => 'court',
+                    'price' => 20.50,
+                    'rating' => 4,
                     'address' => [
-                        'street' => 'Not gonna tell ya st. 5 - 100',
+                        'street' => 'Sports St. 1',
                         'postal_code' => '12345',
-                        'city' => 'Panevezis',
-                        'country' => 'Lithuania'
-                    ],
-                    'location' => [
-                        'lat' => 56.123456789,
-                        'long' => 56.123456789
-                    ],
-                    'date' => '2025-05-31'
-                ],
-                [
-                    'name' => 'Name 2',
-                    'type' => 'private',
-                    'kind' => 'not really',
-                    'price' => 100.01,
-                    'rating' => 0,
-                    'address' => [
-                        'street' => 'Not gonna tell ya st. 10 - 200',
-                        'postal_code' => '12346',
                         'city' => 'Vilnius',
                         'country' => 'Lithuania'
                     ],
@@ -71,17 +52,17 @@ class SportControllerWebTest extends WebTestCase
                         'lat' => 54.687157,
                         'long' => 25.279652
                     ],
-                    'date' => '2025-05-31'
+                    'date' => '2025-06-01'
                 ],
                 [
-                    'name' => 'Name 3',
-                    'type' => 'private',
-                    'kind' => 'not really',
-                    'price' => 100.01,
-                    'rating' => 0,
+                    'name' => 'Swimming Pool',
+                    'type' => 'public',
+                    'kind' => 'pool',
+                    'price' => 15.00,
+                    'rating' => 5,
                     'address' => [
-                        'street' => 'Not gonna tell ya st. 15 - 300',
-                        'postal_code' => '12347',
+                        'street' => 'Aqua St. 5',
+                        'postal_code' => '54321',
                         'city' => 'Kaunas',
                         'country' => 'Lithuania'
                     ],
@@ -89,106 +70,21 @@ class SportControllerWebTest extends WebTestCase
                         'lat' => 54.898521,
                         'long' => 23.903597
                     ],
-                    'date' => '2025-05-31'
-                ],
-                [
-                    'name' => 'Name 4',
-                    'type' => 'private',
-                    'kind' => 'not really',
-                    'price' => 100.01,
-                    'rating' => 0,
-                    'address' => [
-                        'street' => 'Not gonna tell ya st. 20 - 400',
-                        'postal_code' => '12348',
-                        'city' => 'Šiauliai',
-                        'country' => 'Lithuania'
-                    ],
-                    'location' => [
-                        'lat' => 55.933333,
-                        'long' => 23.316667
-                    ],
-                    'date' => '2025-05-31'
-                ],
+                    'date' => '2025-06-01'
+                ]
             ]],
-
             [
-                '/sportas?city=Vilnius&type=private&kind=not+really&date=2025-05-31',
+                '/sports?city=Vilnius',
                 [
                     [
-                        'name' => 'Name 2',
-                        'type' => 'private',
-                        'kind' => 'not really',
-                        'price' => 100.01,
-                        'rating' => 0,
+                        'name' => 'Basketball Court',
+                        'type' => 'public',
+                        'kind' => 'court',
+                        'price' => 20.50,
+                        'rating' => 4,
                         'address' => [
-                            'street' => 'Not gonna tell ya st. 10 - 200',
-                            'postal_code' => '12346',
-                            'city' => 'Vilnius',
-                            'country' => 'Lithuania'
-                        ],
-                        'location' => [
-                            'lat' => 54.687157,
-                            'long' => 25.279652
-                        ],
-                        'date' => '2025-05-31'
-                    ],
-                ],
-            ],
-
-            [
-                '/sportas?city=Kaunas&date=2025-05-31',
-                [
-                    [
-                        'name' => 'Name 3',
-                        'type' => 'private',
-                        'kind' => 'not really',
-                        'price' => 100.01,
-                        'rating' => 0,
-                        'address' => [
-                            'street' => 'Not gonna tell ya st. 15 - 300',
-                            'postal_code' => '12347',
-                            'city' => 'Kaunas',
-                            'country' => 'Lithuania'
-                        ],
-                        'location' => [
-                            'lat' => 54.898521,
-                            'long' => 23.903597
-                        ],
-                        'date' => '2025-05-31'
-                    ],
-                ],
-            ],
-
-            [
-                '/sportas?type=private',
-                [
-                    [
-                        'name' => 'Name',
-                        'type' => 'private',
-                        'kind' => 'not really',
-                        'price' => 100.01,
-                        'rating' => 0,
-                        'address' => [
-                            'street' => 'Not gonna tell ya st. 5 - 100',
+                            'street' => 'Sports St. 1',
                             'postal_code' => '12345',
-                            'city' => 'Panevezis',
-                            'country' => 'Lithuania'
-                        ],
-                        'location' => [
-                            'lat' => 56.123456789,
-                            'long' => 56.123456789
-                        ],
-                        'date' => '2025-05-31'
-                    ],
-                    [
-                        'name' => 'Name 2',
-                        'type' => 'private',
-                        'kind' => 'not really',
-                        'price' => 100.01,
-                        'rating' => 0,
-                        'address' => [
-                            'street' => 'Not gonna tell ya st. 10 - 200',
-                            'postal_code' => '12346',
                             'city' => 'Vilnius',
                             'country' => 'Lithuania'
                         ],
@@ -196,17 +92,22 @@ class SportControllerWebTest extends WebTestCase
                             'lat' => 54.687157,
                             'long' => 25.279652
                         ],
-                        'date' => '2025-05-31'
-                    ],
+                        'date' => '2025-06-01'
+                    ]
+                ]
+            ],
+            [
+                '/sports?type=public&kind=pool',
+                [
                     [
-                        'name' => 'Name 3',
-                        'type' => 'private',
-                        'kind' => 'not really',
-                        'price' => 100.01,
-                        'rating' => 0,
+                        'name' => 'Swimming Pool',
+                        'type' => 'public',
+                        'kind' => 'pool',
+                        'price' => 15.00,
+                        'rating' => 5,
                         'address' => [
-                            'street' => 'Not gonna tell ya st. 15 - 300',
-                            'postal_code' => '12347',
+                            'street' => 'Aqua St. 5',
+                            'postal_code' => '54321',
                             'city' => 'Kaunas',
                             'country' => 'Lithuania'
                         ],
@@ -214,28 +115,10 @@ class SportControllerWebTest extends WebTestCase
                             'lat' => 54.898521,
                             'long' => 23.903597
                         ],
-                        'date' => '2025-05-31'
-                    ],
-                    [
-                        'name' => 'Name 4',
-                        'type' => 'private',
-                        'kind' => 'not really',
-                        'price' => 100.01,
-                        'rating' => 0,
-                        'address' => [
-                            'street' => 'Not gonna tell ya st. 20 - 400',
-                            'postal_code' => '12348',
-                            'city' => 'Šiauliai',
-                            'country' => 'Lithuania'
-                        ],
-                        'location' => [
-                            'lat' => 55.933333,
-                            'long' => 23.316667
-                        ],
-                        'date' => '2025-05-31'
-                    ],
-                ],
-            ],
+                        'date' => '2025-06-01'
+                    ]
+                ]
+            ]
         ];
     }
 }

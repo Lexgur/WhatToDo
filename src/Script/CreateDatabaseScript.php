@@ -24,6 +24,10 @@ class CreateDatabaseScript implements ScriptInterface
         $parsedDsn = parse_url($this->dsn);
         $dbPath = $parsedDsn['path'];
 
+        $dir = dirname($dbPath);
+        if (!is_dir($dir)) {
+            mkdir($dir, 0777, true);
+        }
         if (file_exists($dbPath)) {
             throw new Exception('Database file already exists');
         }

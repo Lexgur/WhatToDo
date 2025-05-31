@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -18,7 +18,7 @@ class CreateSportsTableMigration implements MigrationInterface
 
     public function order(): int
     {
-        return 1;
+        return 2; // Changed from 1 to avoid conflict with existing migration
     }
 
     public function migrate(): void
@@ -32,11 +32,23 @@ class CreateSportsTableMigration implements MigrationInterface
         $database = $this->connection->connect();
 
         $database->exec("
-            CREATE TABLE IF NOT EXISTS users (
+            CREATE TABLE IF NOT EXISTS sports (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                email TEXT NOT NULL UNIQUE,
-                username TEXT NOT NULL UNIQUE,
-                password TEXT NOT NULL
+                name TEXT NOT NULL,
+                type TEXT NOT NULL,
+                kind TEXT NOT NULL,
+                price REAL NOT NULL,
+                rating INTEGER NOT NULL DEFAULT 0,
+                
+                address_street TEXT NOT NULL,
+                address_postal_code TEXT NOT NULL,
+                address_city TEXT NOT NULL,
+                address_country TEXT NOT NULL,
+                
+                location_lat REAL NOT NULL,
+                location_long REAL NOT NULL,
+                
+                date TEXT NOT NULL
             );
         ");
     }

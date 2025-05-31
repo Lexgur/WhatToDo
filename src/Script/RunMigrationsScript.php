@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Lexgur\GondorGains\Script;
+namespace Edgaras\WhatToDo\Script;
 
-use Lexgur\GondorGains\ClassFinder;
-use Lexgur\GondorGains\Container;
+use Edgaras\WhatToDo\ClassFinder;
+use Edgaras\WhatToDo\Container;
 
 class RunMigrationsScript implements ScriptInterface
 {
